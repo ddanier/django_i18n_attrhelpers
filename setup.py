@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name = "django_i18n_attrhelpers",
-    version = "0.1.0-2",
+    version = "0.1.1-1",
     description = 'Helpers for accessing ..._$LANG-fields',
     author = 'David Danier',
     author_email = 'david.danier@team23.de',
