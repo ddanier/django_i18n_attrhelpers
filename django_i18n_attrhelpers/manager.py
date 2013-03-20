@@ -1,5 +1,10 @@
 from django.utils.translation import get_language
-from django.db.models.sql.constants import LOOKUP_SEP
+try:
+    # >= Django 1.5
+    from django.db.models.constants import LOOKUP_SEP
+except ImportError:
+    # < Django 1.5
+    from django.db.models.sql.constants import LOOKUP_SEP
 from django.db import models
 
 from django_i18n_attrhelpers.models import I18NAttribute
