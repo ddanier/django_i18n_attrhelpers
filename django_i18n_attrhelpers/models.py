@@ -37,7 +37,7 @@ class I18NAttribute(object):
 	
 	def contribute_to_class(self, model, name):
 		setattr(model, name, I18NAttributeDescriptor(self, name))
-		if not hasattr(model._meta, '_i18n_attributes'):
-			model._meta._i18n_attributes = []
-		model._meta._i18n_attributes.append(name)
+		if not hasattr(model, '_i18n_attributes'):
+			model._i18n_attributes = []
+		model._i18n_attributes.append(name)
 

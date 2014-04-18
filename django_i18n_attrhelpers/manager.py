@@ -43,20 +43,20 @@ def localized_query_set_factory(BaseQuerySet=models.query.QuerySet):
 					parts = lookup.split(LOOKUP_SEP)
 					fieldname = parts[0]
 					localized_fieldname = fieldname
-					if fieldname in getattr(self.model._meta, '_i18n_attributes', ()):
+					if fieldname in getattr(self.model, '_i18n_attributes', ()):
 						localized_fieldname = '%s_%s' % (fieldname, self.language)
 					localized_lookup = LOOKUP_SEP.join([localized_fieldname] + parts[1:])
 					localized_kwargs[localized_lookup] = kwargs[lookup]
 			else:
 				localized_kwargs = kwargs
 			return super(LocalizedQuerySet, self)._filter_or_exclude(negate, *args, **localized_kwargs)
-	
+		
 		def order_by(self, *field_names):
 			if self.language:
 				localized_field_names = []
 				for field_name in field_names:
 					localized_fieldname = field_name
-					if field_name in getattr(self.model._meta, '_i18n_attributes', ()):
+					if field_name in getattr(self.model, '_i18n_attributes', ()):
 						localized_fieldname = '%s_%s' % (field_name, self.language)
 					localized_field_names.append(localized_fieldname)
 			else:
